@@ -47,7 +47,11 @@ def add_student(self, student):
 # Method to assign a grade to a student based on student_id
 def assign_grade(self, student_id, assignment_name, grade):
     # Find the student by their  Students ID
-    student = next((s for s in self.students if s.student_id == student_id), None)
+    student = None  # Default value
+    for s in self.students:
+        if s.student_id == student_id:
+            student = s  # Found student
+            break  # Exit the loop
     if student:
         student.add_assignment(assignment_name, grade)
     else:
